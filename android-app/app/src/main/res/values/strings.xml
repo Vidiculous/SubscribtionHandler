@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Subscribtor</string>
+    <string name="notification_channel_name">Renewal Reminders</string>
+    <string name="notification_channel_description">Notifies you before subscription renewals</string>
+</resources>

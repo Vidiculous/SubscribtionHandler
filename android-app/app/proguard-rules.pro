@@ -1,0 +1,3 @@
+-keep class com.subhandler.data.** { *; }
+-keep class com.subhandler.model.** { *; }
+-keep class com.subhandler.notifications.** { *; }

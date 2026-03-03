@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Subscribtor</string>
+    <string name="notification_channel_description">Notifies you before subscription renewals</string>
+    <string name="notification_channel_name">Renewal Reminders</string>
+    <style name="Theme.SubHandler" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#020617</item>
+        <item name="android:statusBarColor">#020617</item>
+        <item name="android:navigationBarColor">#020617</item>
+    </style>
+</resources>

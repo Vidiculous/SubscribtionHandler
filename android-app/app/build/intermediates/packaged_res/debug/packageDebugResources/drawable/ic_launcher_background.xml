@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Deep indigo base -->
+    <path
+        android:fillColor="#4F46E5"
+        android:pathData="M0,0 h108 v108 h-108 z" />
+
+    <!-- Lighter indigo circle for depth -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M54,12 A42,42 0 0,1 96,54 A42,42 0 0,1 54,96 A42,42 0 0,1 12,54 A42,42 0 0,1 54,12 Z" />
+
+</vector>

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(npm show vite version)",
+      "Bash(npm show react version)",
+      "Bash(npm show tailwindcss version)",
+      "Bash(npm show date-fns version)",
+      "Bash(npm create vite@latest . -- --template react-ts --yes)",
+      "Bash(npm create vite@latest . -- --template react-ts)",
+      "Bash(npm create:*)",
+      "Bash(npx --yes create-vite@latest . --template react-ts)",
+      "Bash(npm install)",
+      "Bash(npm run build)",
+      "Bash(npm install express)",
+      "Bash(npm install --save-dev concurrently)",
+      "Bash(node -e \"require\\(''fs''\\).writeFileSync\\(''C:/Users/arvid/SubscribtionHandler/src/components/subscription/SubscriptionForm.tsx'', require\\(''fs''\\).readFileSync\\(''C:/Users/arvid/SubscribtionHandler/src/components/subscription/SubscriptionForm.tsx'', ''utf8''\\).replace\\(/text-slate-700 mb-1\\\\.5\"\"/g, ''text-slate-300 mb-1.5\"\"''\\).replace\\(/\"\"block text-sm font-medium text-slate-700 mb-1\\\\.5\"\"/g, ''\"\"block text-sm font-medium text-slate-300 mb-1.5\"\"''\\), ''utf8''\\); console.log\\(''done''\\)\")",
+      "Bash(node -e \":*)",
+      "Bash(npx create-expo-app android-app --template blank-typescript --no-install)",
+      "Bash(Move-Item -Path \"C:\\\\Users\\\\arvid\\\\SubscribtionHandler\" -Destination \"C:\\\\Users\\\\arvid\\\\Documents\\\\SubscribtionHandler\")"
+    ]
+  }
+}
