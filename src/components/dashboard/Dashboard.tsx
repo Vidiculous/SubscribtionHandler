@@ -13,11 +13,13 @@ export function Dashboard({ onAdd, onEdit }: DashboardProps) {
   const { state, spendSummary, upcomingRenewals } = useSubscriptions();
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-8">
-      {state.subscriptions.length > 0 && (
-        <SpendSummary summary={spendSummary} count={state.subscriptions.length} />
-      )}
-      <UpcomingRenewals renewals={upcomingRenewals} />
+    <main className="max-w-5xl mx-auto py-8">
+      <div className="px-4">
+        {state.subscriptions.length > 0 && (
+          <SpendSummary summary={spendSummary} count={state.subscriptions.length} />
+        )}
+        <UpcomingRenewals renewals={upcomingRenewals} />
+      </div>
       <SubscriptionGrid
         subscriptions={state.subscriptions}
         onEdit={onEdit}

@@ -80,21 +80,23 @@ fun MainScreen(vm: SubscriptionViewModel = viewModel()) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(paddingValues),
+            verticalArrangement = Arrangement.spacedBy(0.dp),
             contentPadding = PaddingValues(bottom = 100.dp)
         ) {
             item { Spacer(Modifier.height(4.dp)) }
 
             // Notification permission banner
             item {
-                NotificationBanner()
+                NotificationBanner(modifier = Modifier.padding(horizontal = 16.dp))
             }
 
             // Spend summary
             item {
-                SpendSummaryRow(summary = spendSummary)
+                SpendSummaryRow(
+                    summary = spendSummary,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
 
             // Upcoming renewals
@@ -102,7 +104,8 @@ fun MainScreen(vm: SubscriptionViewModel = viewModel()) {
                 item {
                     UpcomingRenewals(
                         upcoming = upcoming,
-                        windowDays = settings.upcomingWindowDays
+                        windowDays = settings.upcomingWindowDays,
+                        modifier = Modifier.padding(horizontal = 16.dp)
                     )
                 }
             }
@@ -112,11 +115,12 @@ fun MainScreen(vm: SubscriptionViewModel = viewModel()) {
                 Text(
                     text = "All Subscriptions",
                     style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                 )
             }
 
-            // Subscription grid — rendered as pairs in LazyColumn rows
+            // Subscription list
             if (uiState.subscriptions.isEmpty()) {
                 item {
                     Text(
@@ -126,34 +130,17 @@ fun MainScreen(vm: SubscriptionViewModel = viewModel()) {
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
                             .padding(top = 32.dp)
                     )
                 }
             } else {
-                val chunked = uiState.subscriptions.chunked(2)
-                items(chunked.size) { rowIndex ->
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        val row = chunked[rowIndex]
-                        SubscriptionCard(
-                            subscription = row[0],
-                            onOpen = { editingSubscription = it; showForm = true },
-                            onRenew = { vm.renewSubscription(it) },
-                            modifier = Modifier.weight(1f)
-                        )
-                        if (row.size > 1) {
-                            SubscriptionCard(
-                                subscription = row[1],
-                                onOpen = { editingSubscription = it; showForm = true },
-                                onRenew = { vm.renewSubscription(it) },
-                                modifier = Modifier.weight(1f)
-                            )
-                        } else {
-                            Spacer(Modifier.weight(1f))
-                        }
-                    }
+                items(uiState.subscriptions.size) { index ->
+                    SubscriptionCard(
+                        subscription = uiState.subscriptions[index],
+                        onOpen = { editingSubscription = it; showForm = true },
+                        onRenew = { vm.renewSubscription(it) }
+                    )
                 }
             }
         }

@@ -26,3 +26,9 @@ npm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+android-app/.gradle/
+android-app/.idea/
+android-app/.kotlin/
+android-app/build/
+android-app/app/build/

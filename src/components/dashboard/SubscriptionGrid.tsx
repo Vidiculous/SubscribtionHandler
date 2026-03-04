@@ -21,10 +21,10 @@ export function SubscriptionGrid({ subscriptions, onEdit, onAdd }: SubscriptionG
 
   return (
     <div>
-      <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+      <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3 px-4">
         All Subscriptions
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex flex-col divide-y divide-slate-700/50 border-y border-slate-700">
         {sorted.map((sub) => (
           <SubscriptionCard key={sub.id} subscription={sub} onEdit={onEdit} />
         ))}

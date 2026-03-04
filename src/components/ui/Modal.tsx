@@ -12,11 +12,11 @@ interface ModalProps {
 export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const closedByBackButtonRef = useRef(false);
 
   useEffect(() => {
     if (isOpen) {
       previousFocusRef.current = document.activeElement as HTMLElement;
-      // Focus the dialog after mount
       setTimeout(() => {
         dialogRef.current?.focus();
       }, 10);
@@ -33,6 +33,28 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' 
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Back-button support: push a history entry when modal opens, pop it when modal closes
+  useEffect(() => {
+    if (isOpen) {
+      closedByBackButtonRef.current = false;
+      history.pushState({ modal: true }, '');
+
+      function handlePopState() {
+        closedByBackButtonRef.current = true;
+        onClose();
+      }
+
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    } else {
+      // Modal was closed by X / Escape / form submit — go back to clean up the pushed entry
+      if (!closedByBackButtonRef.current) {
+        history.back();
+      }
+      closedByBackButtonRef.current = false;
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return createPortal(
@@ -42,10 +64,9 @@ export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' 
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      {/* Backdrop */}
+      {/* Backdrop — no onClick so accidental scroll/touch doesn't close the modal */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
         aria-hidden="true"
       />
 
